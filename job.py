@@ -511,16 +511,19 @@ def login_page():
 
 
 def sidebar_nav():
+
+    pages = ["My Applications", "Dashboard", "Add Application", "Statistics", "Settings"]
+
+    # Navigation that works on phone
+    page = st.selectbox("Navigate", pages)
+
+    # Sidebar (for laptop users)
     with st.sidebar:
         st.markdown("## 🗂️ Job Tracker")
         st.markdown("---")
         st.markdown(f"**{st.session_state.username}**")
 
-        page = st.radio(
-            "Navigate",
-            ["My Applications", "Dashboard", "Add Application", "Statistics", "Settings"],
-            index=0,
-        )
+        st.radio("Navigate", pages, index=pages.index(page))
 
         st.markdown("---")
         if st.button("Logout", use_container_width=True):
